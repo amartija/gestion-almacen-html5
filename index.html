@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Gestión docente Ipartek</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <label for="show-menu" class="show-menu">Show Menu</label>
+            <input type="checkbox" id="show-menu" role="button">
+            <ul id="menu">
+                <li><a href="index.html">Principal</a></li>
+                <li>
+                    <a href="#">Colecciones ￬</a>
+                    <ul class="submenu">
+                        <li><a href="colecciones/colecciones.html">Listado Colecciones</a></li>
+                        <!--
+                        <li><a href="#"></a></li>
+                        <li><a href="#">Illustration</a></li>
+                        -->
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Fabricantes ￬</a>
+                    <ul class="submenu">
+                        <li><a href="fabricantes/fabricantes.html">Listado Fabricantes</a></li>
+                        <!--
+                        <li><a href="#"></a></li>
+                        <li><a href="#">Illustration</a></li>
+                        -->
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Prendas ￬</a>
+                    <ul class="submenu">
+                        <li><a href="prendas/prendas.html">L. Prendas</a></li>
+                        <!--
+                        <li><a href="#"></a></li>
+                        <li><a href="#">Illustration</a></li>
+                        -->
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        <div id="wrapper">
+
+            <div id="page">
+                <header id="page-header">
+                    <h1>Aplicación de Gestion de Almacen</h1>
+                </header>
+                <main id ="page-body">
+                    <section id ="home">
+                        <header><h2>Formulario de pagina Home</h2></header>
+                        <div>Bienvenido a la aplicación de Gestion de Almacen.</div>
+                    </section>
+                    <section class="flexcontainer"  id="contact">
+                        <header><h2>Formulario Comienza</h2></header>
+                        <div class="flexcontainer">
+                            <form class="flexcontainer" id="contactForm" action="#" method="post">
+                                <div class="flexcontainer">
+                                    <label for ="nombre">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre"/>
+                                    <div class="text-error"></div>
+                                </div>
+                                <div>
+                                    <label for = "identificadorFabricante">Identificador Fabricante</label>
+                                    <input type = "text" name = "identificadorFabricante" id="identificadorFabricante"/>
+                                    <div class ="text-error"></div>
+                                </div>
+                                <div>
+                                    <label for = "personaContacto">Persona de Contacto</label>
+                                    <input type = "text" name = "personaContacto" id="personaContacto"/>
+                                    <div class ="text-error"></div>
+                                </div>
+                                <div>
+                                    <label for = "telefono">Telefono</label>
+                                    <input type = "text" name = "telefono" id="telefono"/>
+                                    <div class ="text-error"></div>
+                                </div>
+                                <div class="flexcontainer">
+                                    <button class="">Enviar</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </section>
+                </main>
+                <footer id="page-footer">
+                    <a href="#" target="_blank">Almacenes Gestionados</a>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gestión docente Ipartek</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<nav>
+    <label for="show-menu" class="show-menu">Show Menu</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <ul id="menu">
+        <li><a href="../index.html">Principal</a></li>
+        <li>
+            <a href="#">Colecciones ￬</a>
+            <ul class="submenu">
+                <li><a href="../colecciones/colecciones.html">Listado Colecciones</a></li>
+                <!--
+                <li><a href="#"></a></li>
+                <li><a href="#">Illustration</a></li>
+                -->
+            </ul>
+        </li>
+        <li>
+            <a href="#">Fabricantes ￬</a>
+            <ul class="submenu">
+                <li><a href="../fabricantes/fabricantes.html">Listado Fabricantes</a></li>
+                <!--
+                <li><a href="#"></a></li>
+                <li><a href="#">Illustration</a></li>
+                -->
+            </ul>
+        </li>
+        <li>
+            <a href="#">Prendas ￬</a>
+            <ul class="submenu">
+                <li><a href="../prendas/prendas.html">L. Prendas</a></li>
+                <!--
+                <li><a href="#"></a></li>
+                <li><a href="#">Illustration</a></li>
+                -->
+            </ul>
+        </li>
+
+    </ul>
+</nav>
+<div id="wrapper">
+
+    <div id="page">
+        <header id="page-header">
+            <h1>Aplicación de Gestion de Almacen</h1>
+        </header>
+        <main id ="page-body">
+            <a tittle = "Crear" href="#">Añadir una nueva coleccion</a>
+            <a tittle = "Borrar" href="#">Borrar una coleccion</a>
+            <section id = "listadoColecciones">
+                <header><h2>Listado de Colecciones</h2></header>
+                <table id="tablaColecciones">
+                    <thead>
+                    <tr>
+                        <th><input type = "checkbox" name ="borrartodos" id=" borrartodos"></th>
+                        <th>Nombre</th>
+                        <th>Identificador Fabricante</th>
+                        <th>Persona Contacto</th>
+                        <th>Telefono</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+                    </tfoot>
+                </table>
+
+            </section>
+        </main>
+        <footer id="page-footer">
+            <a href="http://formacion.ipartek.com" target="_blank">Almacenes Gestionados</a>
+        </footer>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
