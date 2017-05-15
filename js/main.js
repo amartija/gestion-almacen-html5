@@ -65,8 +65,19 @@ jQuery(document).ready(function($){
                 $("#listadoColecciones").text("No se han encontrado Colecciones.");
             }
         }
-        
-    
+    const urlColecciones = "http://localhost:8080/gestionalmacen/api/colecciones/"
+    ajax({"url":urlColecciones, "methos":"get"}).then(function (data){
+        //tengo los datos cargados
+        console.log(data);
+    }).catch(function(){
+        //gestion de errores
+
+    })
+    function ajax(opciones){
+        return new Promise(function (resolve, reject){
+            $ajax(opciones).done(resolve).fail(reject);
+        })
+    }
 });
 
 function validarNombre(){
@@ -93,3 +104,4 @@ function validarTelefono(){
     const pattern = new RegExp(/\d[9]/);
     return pattern.test(telefono);
 }
+
