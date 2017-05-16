@@ -1,0 +1,37 @@
+{
+  "name": "gestion-almacen",
+  "version": "1.0.0",
+  "description": "aplicacion que gestiona un almacen de ropa",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amartija/gestion-almacen-html5.git"
+  },
+  "keywords": [
+    "html5",
+    "css3",
+    "jquery",
+    "ajax",
+    "gulp"
+  ],
+  "author": "Amaia Martija",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amartija/gestion-almacen-html5/issues"
+  },
+  "homepage": "https://github.com/amartija/gestion-almacen-html5#readme",
+  "devDependencies": {
+    "browserify": "^14.3.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.1.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

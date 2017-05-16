@@ -1,8 +1,9 @@
+var $ = require('jquery')
+//var colecciones = [1,2,3,4,5,6,7];
 
-var colecciones = [1,2,3,4,5,6,7];
 
 $.noConflict();
-jQuery(document).ready(function($){
+$(document).ready(function($){
     $("#contactForm").on("submit",fncValidarContacto);
     $("#contactForm").click(function (event) {
         if ($(this).is(":checked")) {
@@ -51,12 +52,12 @@ jQuery(document).ready(function($){
         return false;
     }
 
-        cargarArrayColecciones();
-        function cargarArrayColecciones(){
+     //   cargarArrayColecciones();
+        function cargarArrayColecciones(colecciones){
             if (colecciones.length > 0) {
-                for (var c in colecciones) {//añadir html correspondiente a la pagina
-                    console.log(c);
-                    var texto = "<tr><td><input type='text' value='" + c + "'></td><td></td><td></td><td></td></tr>";
+                for (var i = 0; i < colecciones.length; i++) {//añadir html correspondiente a la pagina
+                    var c = data[i];
+                    var texto = "<tr><td><input type='checkbox' value='" + c.codigo + "'></td><td></td><td></td><td></td><td></td><td></td></tr>";
                     $("#tablaColecciones tbody").append(texto);
                 }
                 $("#tablaColecciones tfoot td").html("<span class= ´text-error'>Total colecciones: </span>" + colecciones.length);
@@ -66,16 +67,21 @@ jQuery(document).ready(function($){
             }
         }
     const urlColecciones = "http://localhost:8080/gestionalmacen/api/colecciones/"
-    ajax({"url":urlColecciones, "methos":"get"}).then(function (data){
+    ajax({"url":urlColecciones})
+        .then(function (data){
         //tengo los datos cargados
         console.log(data);
-    }).catch(function(){
+        //for (var i = 0; i <data.length; i++){
+          //  var alumno= data[i];
+        //}
+        cargarArrayColecciones(data);
+    }).catch(function(jqXHR, textStatus, errorThrown ){
         //gestion de errores
-
+        console.log(jqXHR);
     })
     function ajax(opciones){
         return new Promise(function (resolve, reject){
-            $ajax(opciones).done(resolve).fail(reject);
+            $.ajax(opciones).done(resolve).fail(reject);
         })
     }
 });
