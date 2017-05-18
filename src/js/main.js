@@ -1,6 +1,62 @@
-var $ = require('jquery')
+//var $ = require('jquery')
 //var colecciones = [1,2,3,4,5,6,7];
+import $ from "jquery";
+window.jQuery = window.$ = $;
+import * as coleccion from "./colecciones";
+import * as fabricante from "./fabricantes";
+import * as prenda from "./prendas";
+require("bootstrap");
 
+
+var $listadoColecciones =$("#listadoColecciones");
+var $listadoFabricantes =$("#listadoFabricantes");
+var $listadoPrendas =$("#listadoPrendas");
+
+if($listadoColecciones.length){
+    var as = new coleccion.ColeccionService();
+
+
+    as.getAll()
+        .then(function(data){
+            cargarArrayColecciones(JSON.parse(data));
+        }, function(error){
+            console.log(error);
+        }).catch(function (){
+
+    });
+
+}
+
+if($listadoFabricantes.length){
+    var as = new fabricante.FabricanteService();
+
+
+    as.getAll()
+        .then(function(data){
+            cargarArrayFabricantes(JSON.parse(data));
+        }, function(error){
+            console.log(error);
+        }).catch(function (){
+
+    });
+
+}
+
+
+if($listadoPrendas.length){
+    var as = new prenda.PrendaService();
+
+
+    as.getAll()
+        .then(function(data){
+            cargarArrayPrendas(JSON.parse(data));
+        }, function(error){
+            console.log(error);
+        }).catch(function (){
+
+    });
+
+}
 
 $.noConflict();
 $(document).ready(function($){
@@ -13,7 +69,22 @@ $(document).ready(function($){
             $("tbody input[type=checkbox]").attr("checked", false);
         }
     })
-    
+
+    $("#tablaColecciones tbody").on("click","td:last-child button:last-child",function(){
+        //alert("has pulsado el boton de borrado");
+        var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
+        //Llamar al REST para Borrar
+        //
+        //alert(codigo);
+        //borra la tupla del boton que se ha seleccionado
+        $(this).parents("tr").remove();
+    });
+    $("#tablaColecciones tbody").on("click","td:last-child button:first-child",function(){
+        //alert("has pulsado el boton de actualizar");
+        var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
+        //Llamar al REST para el GetById
+        var nombre = $(this).parents("tr").find("td:nth-child(2)").text();
+    });
     function fncValidarContacto () {
 
         var pnombre = $("#nombre");
@@ -56,8 +127,16 @@ $(document).ready(function($){
         function cargarArrayColecciones(colecciones){
             if (colecciones.length > 0) {
                 for (var i = 0; i < colecciones.length; i++) {//añadir html correspondiente a la pagina
-                    var c = data[i];
-                    var texto = "<tr><td><input type='checkbox' value='" + c.codigo + "'></td><td></td><td></td><td></td><td></td><td></td></tr>";
+                    console.log(colecciones[i]);
+                    var codigo = colecciones[i].codigo;
+                    var fentrada = colecciones[i].fEntrada;
+                    var year = colecciones[i].year;
+                    var gama = colecciones[i].gama;
+                    var tematica = colecciones[i].tematica;
+
+                    var htmlEdit ="<button>Editar</button>";
+                    var htmlDelete ="<button>Borrar</button>";
+                    var texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+year+"</td><td>"+fentrada+"</td><td>"+gama+"</td><td>"+tematica+"</td><td></td></tr>";
                     $("#tablaColecciones tbody").append(texto);
                 }
                 $("#tablaColecciones tfoot td").html("<span class= ´text-error'>Total colecciones: </span>" + colecciones.length);
