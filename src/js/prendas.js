@@ -3,7 +3,7 @@
  */
 import $ from "jquery";
 window.jQuery = window.$ = $;
-const urlPrendas = "http://localhost:8080/gestionalmacen/api/prendas/";
+const urlPrendas = "http://localhost:8080/gestionalmacen/api/prendas";
 import * as service from "./genericService";
 
 export class PrendaService extends  service.genericService{

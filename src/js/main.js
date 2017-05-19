@@ -12,50 +12,28 @@ var $listadoColecciones =$("#listadoColecciones");
 var $listadoFabricantes =$("#listadoFabricantes");
 var $listadoPrendas =$("#listadoPrendas");
 
-if($listadoColecciones.length){
-    var as = new coleccion.ColeccionService();
-
-
-    as.getAll()
-        .then(function(data){
-            cargarArrayColecciones(JSON.parse(data));
-        }, function(error){
-            console.log(error);
-        }).catch(function (){
+if($listadoColecciones.length) {//estamos en la página de alumnos
+    let p1 = coleccion.renderizar();
+    p1.then(function (txt) {
+        $listadoColecciones.find("div.flexcontainer:last-child").append(txt);
+    }).catch(function (txt) {
 
     });
-
 }
 
-if($listadoFabricantes.length){
-    var as = new fabricante.FabricanteService();
-
-
-    as.getAll()
-        .then(function(data){
-            cargarArrayFabricantes(JSON.parse(data));
-        }, function(error){
-            console.log(error);
-        }).catch(function (){
-
+if($listadoFabricantes.length) {
+    let p1 = fabricante.renderizar();
+    p1.then(function (txt) {
+        console.log(txt);
+        $listadoFabricantes.find("div.flexcontainer:last-child").append(txt);
     });
-
 }
-
-
-if($listadoPrendas.length){
-    var as = new prenda.PrendaService();
-
-
-    as.getAll()
-        .then(function(data){
-            cargarArrayPrendas(JSON.parse(data));
-        }, function(error){
-            console.log(error);
-        }).catch(function (){
-
+if($listadoPrendas.length) {
+    let p1 = prenda.renderizar();
+    p1.then(function (txt) {
+        console.log(txt);
+        $listadoPrendas.find("div.flexcontainer:last-child").append(txt);
     });
-
 }
 
 $.noConflict();
@@ -136,7 +114,7 @@ $(document).ready(function($){
 
                     var htmlEdit ="<button>Editar</button>";
                     var htmlDelete ="<button>Borrar</button>";
-                    var texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+year+"</td><td>"+fentrada+"</td><td>"+gama+"</td><td>"+tematica+"</td><td></td></tr>";
+                    var texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+year+"</td><td>"+fentrada+"</td><td>"+gama+"</td><td>"+tematica+"</td><td>"+htmlEdit+htmlDelete+"</td></tr>";
                     $("#tablaColecciones tbody").append(texto);
                 }
                 $("#tablaColecciones tfoot td").html("<span class= ´text-error'>Total colecciones: </span>" + colecciones.length);
@@ -190,3 +168,11 @@ function validarTelefono(){
     return pattern.test(telefono);
 }
 
+
+
+
+var codigo = getURLParameter('codigo');
+
+$pagebody.on("click", "borrartodos", function(Event){
+    
+})

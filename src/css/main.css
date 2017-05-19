@@ -118,11 +118,112 @@ html {
 #page-footer {
 
 }
+table button {
+    background-color:  #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+main a:link, a:visited {
+    background-color: #34495E;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
 
+main a:hover, a:active {
+    background-color: #34495E;
+}
+main section {
+    display: flex;
+    flex-direction: column;
+}
+main section div{
+    justify-content: center;
+}
 #page-body {
     flex: 1;
 }
-
+footer a:link, footer a:visited {
+    color: #444;
+}
+#page-body .flexcontainer a:last-child{
+    margin-left: 2px;
+}
+section.flexcontainer{
+    flex-direction: column;
+}
+section.flexcontainer > div.flexcontainer{
+    flex-direction: row;
+    justify-content: center;
+}
+.flexcontainer {
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* IE 10 */
+    display: -webkit-flex; /*  Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;         /* W3C Spec - Firefox, Chrome, Opera */
+}
+input:not([type='checkbox']),  textarea{
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#contactForm {
+    width: 80%;
+    align-items: center;
+}
+#contactForm.flexcontainer{
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+form .flexcontainer{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+#contactForm label{
+    max-width: 220px;
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+    flex: 1 0 120px;
+}
+form .flexcontainer:not(:last-child){
+    margin-bottom: 15px;
+}
+.text-error{
+    color: red;
+    margin-left: 15px;
+}
+form .flexcontainer div.text-error{
+    flex: 1 0 120px;
+}
+form button{
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+}
+form .flexcontainer:last-child {
+    justify-content: flex-start;
+    margin-left: 200px;
+}
 /******* MENU *******/
 /*Strip the ul of padding and list styling*/
 nav {
@@ -144,14 +245,10 @@ ul {
     display: flex;         /* W3C Spec - Firefox, Chrome, Opera */
     z-index: 1000;
 }
-
 /*Create a horizontal list with spacing*/
 li {
-    /*     display:inline-block;*/
-
     margin-right: 1px;
 }
-
 /*Style for menu links*/
 li a {
     display:block;
@@ -164,12 +261,10 @@ li a {
     background: #2f3036;
     text-decoration: none;
 }
-
 /*Hover state for top level links*/
 li:hover a {
     background: #19c589;
 }
-
 /*Style for dropdown links*/
 li:hover ul a {
     background: #f3f3f3;
@@ -177,36 +272,30 @@ li:hover ul a {
     height: 40px;
     line-height: 40px;
 }
-
 /*Hover state for dropdown links*/
 li:hover ul a:hover {
     background: #19c589;
     color: #fff;
 }
-
 /*Hide dropdown links until they are needed*/
 li ul {
     display: none;
 }
-
 /*Make dropdown links vertical*/
 li ul li {
     display: block;
-   /* float: none;*/
+    /* float: none;*/
 }
-
 /*Prevent text wrapping*/
 li ul li a {
     width: auto;
     min-width: 100px;
     padding: 0 20px;
 }
-
 /*Display the dropdown on hover*/
 ul li a:hover + .submenu, .submenu:hover {
     display: block;
 }
-
 /*Style 'show menu' label button and hide it by default*/
 .show-menu {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -217,20 +306,18 @@ ul li a:hover + .submenu, .submenu:hover {
     padding: 10px 0;
     display: none;
 }
-
 /*Hide checkbox*/
-input[type=checkbox]{
+nav input[type=checkbox]{
     display: none;
 }
-
-/*Show menu when invisible checkbox is checked*/
-input[type=checkbox]:checked ~ #menu{
+input[type=checkbox]{
     display: block;
 }
-
-
+/*Show menu when invisible checkbox is checked*/
+nav input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
 /*Responsive Styles*/
-
 @media screen and (max-width : 760px){
     /*Make dropdown links appear inline*/
     ul {
@@ -255,11 +342,89 @@ input[type=checkbox]:checked ~ #menu{
         flex-direction: column;
     }
 }
+/****************   TABLE RWD  *************************/
+.rwd-table {
+    margin: 1em 0;
+    min-width: 300px;
+}
+.rwd-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+    display: none;
+}
+.rwd-table td {
+    display: block;
+}
+.rwd-table td:first-child {
+    padding-top: .5em;
+}
+.rwd-table td:last-child {
+    padding-bottom: .5em;
+}
+.rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+}
+@media (min-width: 480px) {
+    .rwd-table td:before {
+        display: none;
+    }
+}
+.rwd-table th, .rwd-table td {
+    text-align: left;
+}
+@media (min-width: 480px) {
+    .rwd-table th, .rwd-table td {
+        display: table-cell;
+        padding: .25em .5em;
+    }
+    .rwd-table th:first-child, .rwd-table td:first-child {
+        padding-left: 0;
+    }
+    .rwd-table th:last-child, .rwd-table td:last-child {
+        padding-right: 0;
+    }
+}
 
+body {
+    padding: 0 2em;
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: #444;
+    background: #eee;
+}
 
+h1 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    color: #34495E;
+}
 
-
-
+.rwd-table {
+    background: #34495E;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+}
+.rwd-table tr {
+    border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+    margin: .5em 1em;
+}
+@media (min-width: 480px) {
+    .rwd-table th, .rwd-table td {
+        padding: 1em !important;
+    }
+}
+.rwd-table th, .rwd-table td:before {
+    color: #dd5;
+}
 
 
 /* ==========================================================================
@@ -347,9 +512,9 @@ input[type=checkbox]:checked ~ #menu{
 }
 
 @media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
 
@@ -429,6 +594,5 @@ input[type=checkbox]:checked ~ #menu{
     h2,
     h3 {
         page-break-after: avoid;
-
     }
 }
