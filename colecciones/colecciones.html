@@ -1,5 +1,14 @@
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 <!doctype html>
+
 <html class="no-js" lang="">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -60,7 +69,7 @@
             <h1>Aplicación de Gestion de Almacen</h1>
         </header>
         <main id ="page-body">
-            <a tittle = "Crear" href="#">Añadir una nueva coleccion</a>
+            <button title="Crear" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Añadir nueva coleccion</button>
             <a tittle = "Borrar" href="#">Borrar una coleccion</a>
             <section id = "listadoColecciones">
                 <header><h2>Listado de Colecciones</h2></header>
@@ -71,7 +80,7 @@
                         <th>Year</th>
                         <th>F.Entrada</th>
                         <th>Gama</th>
-                        <th>Telefono</th>
+                        <th>Tematica</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -93,6 +102,56 @@
         </footer>
     </div>
 </div>
+<div class ="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class = "modal-dialog" role="document">
+        <div class="modal-content">
+            <div class ="modal-header">
+                <button type="button" class ="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
+                <h3 class ="modal-tittle" id="myModalLabel"> Formulario Coleccion</h3>
+
+            </div>
+            <div class="modal-body">
+
+                <section class="flexcontainer"  id="crear">
+                    <header><h2>Crear nueva coleccion</h2></header>
+                    <div class="flexcontainer">
+                        <form class="flexcontainer" id="formCrearColeccion" action="#" method="post">
+                            <div class="flexcontainer">
+                                <label for ="year">Year</label>
+                                <input type="text" name="year" id="year"/>
+                                <div class="text-error"></div>
+                            </div>
+                            <div class="flexcontainer">
+                                <label for = "gama">Gama</label>
+                                <input type = "text" name = "gama" id="gama"/>
+                                <div class ="text-error"></div>
+                            </div>
+                            <div class="flexcontainer">
+                                <label for = "fentrada">F.Entrada</label>
+                                <input type = "text" name = "fentrada" id="fentrada"/>
+                                <div class ="text-error"></div>
+                            </div>
+                            <div class="flexcontainer">
+                                <label for = "tematica">Tematica</label>
+                                <input type = "text" name = "tematica" id="tematica"/>
+                                <div class ="text-error"></div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+
+                <button id ="botonCrear" type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <script src="../dist/js/all.min.js"></script>
+
 </body>
 </html>

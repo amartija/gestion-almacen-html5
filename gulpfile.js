@@ -19,4 +19,3 @@ gulp.task('compile-js',function() {
      //   .pipe(uglify())
         .pipe(gulp.dest('./dist/js'));
 });
-   

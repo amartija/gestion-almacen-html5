@@ -2,15 +2,27 @@
 //var colecciones = [1,2,3,4,5,6,7];
 import $ from "jquery";
 window.jQuery = window.$ = $;
+require("bootstrap");
 import * as coleccion from "./colecciones";
 import * as fabricante from "./fabricantes";
 import * as prenda from "./prendas";
-require("bootstrap");
+
 
 
 var $listadoColecciones =$("#listadoColecciones");
 var $listadoFabricantes =$("#listadoFabricantes");
 var $listadoPrendas =$("#listadoPrendas");
+var $coleccion =$("#coleccion");
+
+var $pagebody =$("#page-body");
+
+var $botonCrear = $("#botonCrear");
+
+
+var $contactForm = $("#contactForm");
+
+var $crearUsuario = $('#crearUsuario');
+var $form = $('#form');
 
 if($listadoColecciones.length) {//estamos en la página de alumnos
     let p1 = coleccion.renderizar();
@@ -18,6 +30,19 @@ if($listadoColecciones.length) {//estamos en la página de alumnos
         $listadoColecciones.find("div.flexcontainer:last-child").append(txt);
     }).catch(function (txt) {
 
+    });
+}
+
+if($coleccion.length){
+    let codigo = libreria.getURLParameter('codigo');
+    // console.log(codigo);
+    let p2 =coleccion.rederizarFormulario(codigo);
+
+    p2.then(function (html) {
+        console.log("html"+html);
+        $coleccion.find("div.flexcontainer:last-child").append(html);
+    }).catch(function (txt) {
+        console.log("html"+txt);
     });
 }
 
@@ -36,7 +61,8 @@ if($listadoPrendas.length) {
     });
 }
 
-$.noConflict();
+
+
 $(document).ready(function($){
     $("#contactForm").on("submit",fncValidarContacto);
     $("#contactForm").click(function (event) {
@@ -107,7 +133,7 @@ $(document).ready(function($){
                 for (var i = 0; i < colecciones.length; i++) {//añadir html correspondiente a la pagina
                     console.log(colecciones[i]);
                     var codigo = colecciones[i].codigo;
-                    var fentrada = colecciones[i].fEntrada;
+                    var fentrada = colecciones[i].fentrada;
                     var year = colecciones[i].year;
                     var gama = colecciones[i].gama;
                     var tematica = colecciones[i].tematica;
@@ -171,8 +197,65 @@ function validarTelefono(){
 
 
 
-var codigo = getURLParameter('codigo');
 
-$pagebody.on("click", "borrartodos", function(Event){
-    
-})
+
+$pagebody.on("click","tbody td:last-child button:last-child",function(){
+    var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
+    $(this).parents("tr").remove();
+    let nTable = $("table").attr("data-table");
+    let service;
+    switch (nTable){
+        case 'colecciones':
+            service = new colecciones.ColeccionService();
+            break;
+    }
+    service.delete(codigo);
+
+});
+
+$pagebody.on("click","tbody td:last-child button:first-child",function(){//editar
+
+    var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
+    let nTable = $("table").attr("data-table");
+    //              http:----------------//--- localhost:63342
+    let txt= window.location.protocol + '//' + window.location.host+"/gestion-almacen/";
+    switch (nTable){
+        case 'colecciones':
+            txt += "colecciones/coleccion.html?codigo="+codigo;
+            break;
+    }
+    window.location = txt;
+});
+
+
+
+    $("#botonCrear").on("click", function() {
+        $form =$("#formCrearColeccion");
+        let coleccionjson = JSON.stringify($("#formCrearColeccion").serializeObject());
+
+        const nuevaColeccion = coleccion.crearColeccion(coleccionjson);
+
+        nuevaColeccion.then(function(){
+            $form[0].reset();
+            $("#myModal").modal("hide");
+        });
+
+        
+    });
+
+
+$.fn.serializeObject = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};

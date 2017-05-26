@@ -184,7 +184,16 @@ input:not([type='checkbox']),  textarea{
     width: 80%;
     align-items: center;
 }
+#formCrearColeccion {
+    width: 80%;
+    align-items: center;
+}
 #contactForm.flexcontainer{
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#formCrearColeccion.flexcontainer{
     flex-wrap: wrap;
     flex-direction: column;
 }
@@ -195,6 +204,13 @@ form .flexcontainer{
     width: 100%;
 }
 #contactForm label{
+    max-width: 220px;
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+    flex: 1 0 120px;
+}
+#formCrearColeccion label{
     max-width: 220px;
     padding-top: 7px;
     margin-bottom: 0;
@@ -222,7 +238,7 @@ form button{
 }
 form .flexcontainer:last-child {
     justify-content: flex-start;
-    margin-left: 200px;
+    margin-left: 5px;
 }
 /******* MENU *******/
 /*Strip the ul of padding and list styling*/
