@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+    <h1>Web Workers</h1>
+    <div><label>Introduce un numero entero mayor que 1: </label>
+    <input type = "numero" id = "myNumber" value = "numero" />
+    <button onclick="calcular()">Calcular</button></div>
+
+    <div><label>Tiempo empleado:</label>
+    <output id ="tiempo"></output></div>
+
+    <div><label>Primos: </label>
+    <output id="result"></output></div>
+
+    <script type = text/javascript>
+            function calcular() {
+                worker.postMessage({'cmd': 'calcular'});
+            }
+
+            var worker = new Worker('task.js');
+            worker.addEventListener('message', function(e) {
+                document.getElementById('result').textContent = e.data;
+            }, false);
+</script>
+</body>
+</html>

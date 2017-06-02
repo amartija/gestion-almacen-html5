@@ -213,8 +213,12 @@ $pagebody.on("click","tbody td:last-child button:last-child",function(){
 
 });
 
-$pagebody.on("click","tbody td:last-child button:first-child",function(){//editar
-
+$pagebody.on("click","tbody td:last-child li:first-child",function(){//editar
+    //obtener d ela base de datos  dela coleccion de BD , hay que añadir renderizar formulario
+    //renderizar formulario
+    //modificar formulario
+    //Method = PUT
+    //añadir un campo hidden con el id del usuario modificado
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
     let nTable = $("table").attr("data-table");
     //              http:----------------//--- localhost:63342
@@ -242,6 +246,20 @@ $pagebody.on("click","tbody td:last-child button:first-child",function(){//edita
 
         
     });
+
+$("#botonEditar").on("click", function() {
+    $form = $("#formEditarColeccion");
+    let coleccionjson = JSON.stringify($("#formEditarColeccion").serializeObject());
+
+    const nuevaColeccion = coleccion.updateColeccion(coleccionjson);
+
+    nuevaColeccion.then(function () {
+        $form[0].reset();
+        $("#myModalE").modal("hide");
+    });
+});
+
+
 
 
 $.fn.serializeObject = function() {

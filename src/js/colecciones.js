@@ -24,6 +24,10 @@ export class ColeccionService extends service.genericService {
         console.log(coleccion);
         return super.ajax(urlColecciones ,"post", coleccion, "json");
     }
+    update(codigo){
+        console.log(coleccion);
+        return super.ajax(urlColecciones +"/"+coleccion.codigo,"put", coleccion, "json");
+    }
 
 
 }
@@ -66,7 +70,7 @@ function parseColeccion (coleccion){
     let fentrada = coleccion.fentrada;
     let gama = coleccion.gama;
     let tematica = coleccion.tematica;
-    let htmlEdit ="<button>Editar</button>";
+    let htmlEdit ="<button herfe>Editar</button>";
     let htmlDelete ="<button>Borrar</button>";
 
     let texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+year+"</td><td>"+fentrada+"</td><td>"+gama+"</td><td>"+tematica+"</td><td>"+htmlEdit+htmlDelete+"</td></tr>";
@@ -90,33 +94,76 @@ export function crearColeccion(coleccionjson){
 export function renderizar(){
     let cs = new ColeccionService();
     let txt = "";
+    let colecciones = cs.getAll();
     return new Promise(function(resolve, reject) {
         cs.getAll().then(function(data) {
-            console.log(colecciones);
-            let colecciones = data;
-            //   console.log(colecciones);
+
+
             if (colecciones.length > 0) {
-                txt ="<table data-table='colecciones' id='tablaColecciones' class='rwd-table'><thead><tr>"
-                    +"<th><input type='checkbox' name='borrartodos' id='borrartodos'/></th>"
-                    +"<th>Year</th>"
-                    +"<th>F.Entrada</th>"
-                    +"<th>Gama</th>"
-                    +"<th>Temanica</th>"
-                    +"<th></th></tr></thead><tbody>";;
-                for (let i = 0; i < colecciones.length; i++) {
-                    let coleccion = colecciones[i];
-                    console.log(coleccion);
-                    txt += parseColeccion(coleccion);
-                }
-                txt+="</tbody><tfoot><tr><td colspan='6'>Total Colecciones: "+colecciones.length+"</td></tr></tfoot></table>";
+              txt ="<table data-table='colecciones' id='tablaColecciones' class='rwd-table'><thead><tr>"
+            let $filaCabecera = $("<tr>")
+                .append($("<th/>",{
+                    html: "<input type='checkbox' name='borrartodos' id='borrartodos'/>"
+                }))
+                .append($("<th/>",{
+                    text: "Year"
+                }))
+                .append($("<th/>",{
+                    text: "F. Entrada"
+                }))
+                .append($("<th/>",{
+                    text: "Gama"
+                }))
+                .append($("<th/>",{
+                    text: "Tematica"
+                }))
+                .append($("<th/>"));
+
+            let $tabla = $("<table/>",{
+                dataTable : "colecciones",
+                id: "tablaColecciones",
+                class: "rwd-table"
+            }).append(
+                $("<thead/>")
+                    .append($filaCabecera)
+            );
+
+            $("#contenedor").append($tabla);
+
+            //let colecciones = data;
+            //   console.log(colecciones);
+            //if (colecciones.length > 0) {
+              //  txt ="<table data-table='colecciones' id='tablaColecciones' class='rwd-table'><thead><tr>"
+                //    +"<th><input type='checkbox' name='borrartodos' id='borrartodos'/></th>"
+                  //  +"<th>Year</th>"
+                    //+"<th>F.Entrada</th>"
+                   // +"<th>Gama</th>"
+                    //+"<th>Temanica</th>"
+                   // +"<th></th></tr></thead><tbody>";;
+                //for (let i = 0; i < colecciones.length; i++) {
+                  //  let coleccion = colecciones[i];
+                   // console.log(coleccion);
+                    //txt += parseColeccion(coleccion);
+                //}
+                //txt+="</tbody><tfoot><tr><td colspan='6'>Total Colecciones: "+colecciones.length+"</td></tr></tfoot></table>";
             }else{
-                txt ="no se encuentran colecciones en la BBDD";
+              txt ="no se encuentran colecciones en la BBDD";
             }
             resolve(txt)
         }, function(error) {//error
             console.log(error);
             txt ="error en la carga de colecciones";
             reject(txt);
+        });
+    });
+}
+export function  updateColeccion() {
+    return new Promise(function(resolve, reject){
+        cs.update(coleccionjson).then(function (data){
+            console.log("Hecho3");
+            resolve(data);
+        }).catch(function(msj) {
+            reject(new Error(msj));
         });
     });
 }
